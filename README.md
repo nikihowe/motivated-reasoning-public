@@ -128,12 +128,6 @@ python motivated_reasoning/visualization/study_reasonableness_differences.py <ru
 
 This matches correctness and reasonableness evaluations, classifies each example into one of four quadrants (correct/reasonable, correct/unreasonable, incorrect/reasonable, incorrect/unreasonable), and saves summaries to `analysis_output/`.
 
-To run analysis for multiple experiments at once:
-
-```bash
-./run_constitution_response_analysis.sh
-```
-
 ---
 
 ### 5. Monitoring experiments
