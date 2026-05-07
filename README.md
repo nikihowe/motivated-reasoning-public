@@ -1,9 +1,5 @@
 # Motivated Reasoning in LLMs
 
-Codebase for *"Targeted Manipulation and Deception Emerge in LLMs Trained on User Feedback"*.
-
-This repo implements a multi-turn RL environment for training LLMs on user feedback, and studies whether models trained this way learn to produce post-hoc rationalizations (motivated reasoning) when their training objective conflicts with their stated principles.
-
 ## Installation
 
 ```bash
