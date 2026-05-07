@@ -137,66 +137,20 @@ To run analysis for multiple experiments at once:
 
 ### 5. Monitoring experiments
 
-The monitoring experiments study whether a judge model (the "monitor") can detect motivated reasoning, and specifically whether models learn to write reasoning that actively deceives the monitor.
-
-Two monitoring conditions are compared:
-- **Without CoT** (`--eval_target constitution_and_response`): the monitor sees the constitution + final response only
-- **With CoT** (`--eval_target constitution_and_reasoning_and_response`): the monitor also sees the model's chain-of-thought reasoning
+The monitoring experiments evaluate whether a judge model can detect motivated reasoning when it can also see the model's chain-of-thought. The judge uses the `eval_motivated_reasoning_with_thinking` prompt (in `motivated_reasoning/evaluation/prompts/`) and the `constitution_and_reasoning_and_response` eval target, so it sees the constitution, the model's reasoning, and its final response.
 
 **Step 1: Run inference** (same as above, using a constitutional CoT prompt such as `later_constitutional_cot_v2`)
 
-**Step 2: Evaluate under both conditions**
+**Step 2: Evaluate with the thinking-aware judge**
 
 ```bash
-# Monitor without CoT access
-./motivated_reasoning/evaluation/slurm/evaluate_inference_outputs_with_prompt_gemini_slurm.sh \
+./motivated_reasoning/evaluation/slurm/evaluate_inference_outputs_with_local_model_slurm.sh \
     --run_name <run_name> \
     --inference_prompt_dir <prompt_file> \
-    --eval_prompt_dir simple_reasonable_recommendation_v3 \
-    --eval_target constitution_and_response
-
-# Monitor with CoT access
-./motivated_reasoning/evaluation/slurm/evaluate_inference_outputs_with_prompt_gemini_slurm.sh \
-    --run_name <run_name> \
-    --inference_prompt_dir <prompt_file> \
-    --eval_prompt_dir simple_reasonable_recommendation_v3 \
-    --eval_target constitution_and_reasoning_and_response
+    --eval_prompt_dir eval_motivated_reasoning_with_thinking \
+    --eval_target constitution_and_reasoning_and_response \
+    --evaluator_model meta-llama/Meta-Llama-3-8B-Instruct
 ```
-
-To run evaluations for all four experiments in batch:
-
-```bash
-./run_constitution_response_gemini_direct.sh   # without CoT
-```
-
-**Step 3: Analyze both conditions**
-
-```bash
-./run_constitution_response_analysis.sh
-```
-
-**Step 4: Plot monitoring results**
-
-The `plot_reasonableness_proportions_paper.py` script produces a combined figure comparing both conditions across all experiments:
-
-```bash
-python motivated_reasoning/plotting/plot_reasonableness_proportions_paper.py \
-    --all-experiments \
-    --evaluator <evaluator_name> \
-    --reasonableness-version simple_reasonable_recommendation_v3
-```
-
-To plot specifically the cases where CoT access *degrades* monitor performance (the model's reasoning fools the judge):
-
-```bash
-python motivated_reasoning/plotting/plot_cot_degradation.py \
-    --all-experiments \
-    --evaluator <evaluator_name> \
-    --reasonableness-version simple_reasonable_recommendation_v3 \
-    --output-base-dir plots/cot_degradation
-```
-
-Outputs are saved to `plots/reasonableness_proportions/` and `plots/cot_degradation/` respectively.
 
 ---
 

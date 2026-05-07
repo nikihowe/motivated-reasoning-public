@@ -2,3 +2,4 @@ motivated_reasoning/.env
 __pycache__/
 *.pyc
 *.egg-info/
+motivated_reasoning.egg-info/
