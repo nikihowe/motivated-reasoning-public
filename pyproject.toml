@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools"]
+
+[project]
+name = "motivated_reasoning"
+version = "0.0.1"
+description = "Codebase for 'Targeted Manipulation and Deception Emerge in LLMs Trained on User Feedback'. This repo implements a generative multi-turn RL environment with support for agent, user, user feedback, transition and veto models. It also implements KTO and expert iteration for training on user preferences. "
+authors = []
+# Dynamically include the README file, as specified in the `tool.setuptools.dynamic` section.
+dynamic = ["readme"]
+dependencies = [
+    "torch==2.3.1",
+    "deepspeed==0.15.1",
+    "transformers==4.45.1",
+    "tokenizers==0.20.0",
+    "accelerate==0.34.2",
+    "numpy==1.26.4",
+    "openai",
+    "pyyaml",
+    "trl==0.9.6",
+    "tqdm",
+    "peft==0.12.0",
+    "datasets",
+    "matplotlib",
+    "pandas==2.2.2",
+    "wandb",
+    "flask",
+    "flask-socketio",
+    "python-dotenv",
+    "anthropic",
+    "tenacity",
+    "seaborn",
+    "tiktoken",
+    "scipy",
+]
+
+[tool.setuptools.dynamic]
+readme = { file = ["README.md"], content-type = "text/markdown" }
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "pep8-naming",
+    "mypy",
+    "pytest",
+    "pytest-timeout",
+    "isort",
+]
+
+[tool.black]
+line-length = 120
+include = '\.pyi?$' # Includes .pyi stub files
+exclude = '''
+/(
+    tmp
+)
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+src_paths = ["motivated_reasoning"]
+known_first_party = ["motivated_reasoning"]
+known_third_party = ["ray", "torch", "wandb"]
+skip = ["experiments/test.py", "tmp"]
+
+# Should look into the below more
+[tool.pytest.ini_options]
+timeout = 60
+testpaths = ["tests"]
+markers = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["motivated_reasoning*"]
+exclude = ["experiments*"]

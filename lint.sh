@@ -1,0 +1,4 @@
+isort motivated_reasoning tests
+black motivated_reasoning tests
+flake8 motivated_reasoning tests
+mypy motivated_reasoning tests

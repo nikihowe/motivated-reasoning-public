@@ -1,0 +1,4 @@
+motivated_reasoning/.env
+__pycache__/
+*.pyc
+*.egg-info/
