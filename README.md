@@ -190,4 +190,4 @@ The five main experiments in the paper:
 | Now→Later | Prefer immediate reward | Prefer delayed reward |
 | Later→Now | Prefer delayed reward | Prefer immediate reward |
 
-Each experiment runs 10–20 RL iterations. Results are evaluated at each checkpoint (iteration 0 through N) plus the base model.
+Each experiment runs 10 RL iterations. Results are evaluated at each checkpoint (iteration 0 through 9) plus the base model.
