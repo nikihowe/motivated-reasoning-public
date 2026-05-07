@@ -43,9 +43,10 @@ Training runs RL (KTO or Expert Iteration) over a configurable multi-turn enviro
 ```bash
 conda activate motivated_reasoning_env
 python motivated_reasoning/training/launch_training.py \
-    --config_name <experiment_config> \
-    --timestamp <timestamp>
+    --config <path_to_experiment_config>
 ```
+
+To resume an existing run, pass `--timestamp <timestamp>` with the timestamp of the run to resume.
 
 For SLURM clusters, use the scripts in `motivated_reasoning/training/slurm/`. You will need to configure the node lists for your cluster (marked with `TODO` in the scripts).
 
