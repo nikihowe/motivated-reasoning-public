@@ -23,7 +23,7 @@ args = parser.parse_args()
 
 # File paths for introspection prompts
 INTROSPECTION_DIR = "motivated_reasoning/" \
-                      "inference/prompts/niki/introspection"
+                      "inference/prompts/introspection"
 
 SAFETY_PROMPT_FILE = Path(INTROSPECTION_DIR) / "safety_training_conflict.txt"
 BAD_REASONING_PROMPT_FILE = Path(INTROSPECTION_DIR) / "bad_reasoning.txt"
