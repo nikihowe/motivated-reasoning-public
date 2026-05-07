@@ -4,7 +4,7 @@
 
 ```bash
 git clone <repo-url>
-cd motivated-reasoning/
+cd motivated-reasoning-public/
 conda create -n motivated_reasoning_env python=3.11 -y
 conda activate motivated_reasoning_env
 pip install -e .
